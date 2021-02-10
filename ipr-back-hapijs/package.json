@@ -1,0 +1,45 @@
+{
+  "name": "ipr-back-hapijs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon",
+    "build": "node src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ukonsas28/ipr-back-hapijs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ukonsas28/ipr-back-hapijs/issues"
+  },
+  "homepage": "https://github.com/ukonsas28/ipr-back-hapijs#readme",
+  "dependencies": {
+    "@hapi/boom": "^9.1.1",
+    "@hapi/hapi": "^20.1.0",
+    "filepaths": "^0.3.0",
+    "hapi-boom-decorators": "^4.1.2",
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/hapi__hapi": "^20.0.5",
+    "@types/node": "^14.14.22",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^6.3.1",
+    "eslint-config-airbnb-typescript-prettier": "^1.4.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "23.8.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1"
+  }
+}
