@@ -1,3 +1,4 @@
 /ipr-front-nextjs/node_modules/
 /ipr-front-nextjs/.next/
+/ipr-front-nextjs/build/
 /ipr-back-hapijs/node_modules/
