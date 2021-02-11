@@ -3,14 +3,21 @@ import Hapi from '@hapi/hapi';
 const init = async () => {
   const server = Hapi.server({
     port: 8888,
+    routes: {
+      cors: {
+        origin: ['*'],
+      }
+    }
   });
 
   server.route({
     method: 'GET',
     path: '/',
     handler: (request, h) => {
+      console.log('hi')
       return 'Hello World!!!back';
     },
+
   });
   await server.start();
   console.log(
