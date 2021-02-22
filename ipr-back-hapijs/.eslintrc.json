@@ -25,6 +25,7 @@
         "jest"
     ],
     "rules": {
-        // "camelcase": "off"
+        "@typescript-eslint/camelcase": "off"
+        
     }
 }
