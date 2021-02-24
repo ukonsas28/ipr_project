@@ -15,7 +15,7 @@ PG_ADMIN_NAME = pgadmin4
 DEFAULT_USER = developer
 DEFAULT_EMAIL = developer@mail.ru
 DEFAULT_PASSWORD = developer
-
+DEFAULT_DB = ipr_db
 
 
 
@@ -62,6 +62,7 @@ postgres:
 		-p 5434:5432 \
 		-e POSTGRES_PASSWORD=${DEFAULT_PASSWORD} \
 		-e POSTGRES_USER=${DEFAULT_USER} \
+		-e POSTGRES_DB=${DEFAULT_DB} \
 		-d postgres
 
 pg_admin:

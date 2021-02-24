@@ -3,6 +3,7 @@ import Inert from '@hapi/inert';
 import Vision from '@hapi/vision';
 import HapiSwagger from 'hapi-swagger';
 import appRoutes from './routes';
+import 'reflect-metadata';
 
 class App {
   private server: Hapi.Server;
