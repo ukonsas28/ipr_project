@@ -5,7 +5,7 @@
    "username": "developer",
    "password": "developer",
    "database": "ipr_db",
-   "synchronize": true,
+   "synchronize": false,
    "logging": false,
    "entities": [
       "src/models/database/entity/**/*.ts"

@@ -13,6 +13,7 @@ class App {
 
   private async initDB() {
     this.dbConnection = await createConnection();
+    await this.dbConnection.runMigrations();
   }
 
   private async addPlugins() {
