@@ -2,11 +2,18 @@ import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 import Vision from '@hapi/vision';
 import HapiSwagger from 'hapi-swagger';
+import { Connection, createConnection } from 'typeorm';
 import appRoutes from './routes';
 import 'reflect-metadata';
 
 class App {
   private server: Hapi.Server;
+
+  private dbConnection: Connection;
+
+  private async initDB() {
+    this.dbConnection = await createConnection();
+  }
 
   private async addPlugins() {
     await this.server.register([
@@ -39,6 +46,7 @@ class App {
     });
     this.server.route(appRoutes);
     await this.addPlugins();
+    await this.initDB();
   }
 
   public async startServer() {

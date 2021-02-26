@@ -8,4 +8,4 @@ RUN npm install
 EXPOSE 8888
 COPY . /usr/src/app
 
-CMD [ "npm", "start" ]
+# CMD [ "npm", "start" ]

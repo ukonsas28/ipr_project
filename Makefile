@@ -20,7 +20,7 @@ DEFAULT_DB = ipr_db
 
 
 
-initial_project:
+initial:
 	docker network create ${NETWORK} || true
 	docker build -t ${APP_NAME}_${FRONT_APP_NAME}_${IMAGE} ${FRONT_APP_PATH}
 	docker build -t ${APP_NAME}_${BACK_APP_NAME}_${IMAGE} ${BACK_APP_PATH}
@@ -29,9 +29,9 @@ initial_project:
 
 
 
-start_project: front_app back_app postgres pg_admin
+up: front_app back_app postgres pg_admin
 
-stop_project:
+down:
 	docker stop $(APP_NAME)_${FRONT_APP_NAME} $(APP_NAME)_${BACK_APP_NAME} \
 		$(APP_NAME)_${POSTGRES_NAME} $(APP_NAME)_${PG_ADMIN_NAME}
 
@@ -75,3 +75,16 @@ pg_admin:
     	-e 'PGADMIN_DEFAULT_PASSWORD=${DEFAULT_PASSWORD}' \
 		-d dpage/pgadmin4
 
+
+
+start_front: 
+	docker exec -it $(APP_NAME)_${FRONT_APP_NAME} sh -ac 'npm start'
+
+start_back: 
+	docker exec -it $(APP_NAME)_${BACK_APP_NAME} sh -ac 'npm start'
+
+gen_migration:
+	docker exec -it $(APP_NAME)_${BACK_APP_NAME} sh -ac 'npm run gen_migration ${name}'
+
+run_migration:
+	docker exec -it $(APP_NAME)_${BACK_APP_NAME} sh -ac 'npm run run_migration'
