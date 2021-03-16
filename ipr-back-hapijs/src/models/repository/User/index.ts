@@ -2,11 +2,11 @@ import { getRepository } from 'typeorm';
 import User from '../../database/entity/User';
 
 class UserRepository {
-  static async request() {
+  static async createUser() {
     const userRepo = getRepository(User);
-    const user = await userRepo.findOne(2);
-    console.log(user);
-    return user;
+    // const user = await userRepo.save();
+    // console.log(user);
+    // return user;
   }
 }
 
