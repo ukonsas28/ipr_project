@@ -12,9 +12,9 @@ class User {
   lastName: string;
 
   @Column()
-  login: number;
+  login: string;
 
   @Column()
-  password: number;
+  password: string;
 }
 export default User;

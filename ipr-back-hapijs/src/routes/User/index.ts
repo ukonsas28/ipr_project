@@ -1,4 +1,5 @@
 import * as Hapi from '@hapi/hapi';
+import { createUser } from '../../types/User';
 import UserControllers from '../../controllers/User/index';
 
 const userRoutes: Hapi.ServerRoute[] = [
@@ -9,6 +10,9 @@ const userRoutes: Hapi.ServerRoute[] = [
     options: {
       tags: ['api', 'user'],
       description: 'Create new user',
+      validate: {
+        payload: <object>createUser,
+      },
     },
   },
   //   {
