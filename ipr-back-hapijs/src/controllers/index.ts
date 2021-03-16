@@ -1,6 +1,8 @@
+import UserRepository from '../models/repository/User';
+
 class Controllers {
   static async first() {
-    const response = 'THIS is FIRST';
+    const response = await UserRepository.request();
     return response;
   }
 }
