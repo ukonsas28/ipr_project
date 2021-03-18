@@ -1,14 +1,11 @@
 import UserRepository from '../../models/repository/User';
+import { TryCatchDecorator } from '../../decorators';
 
 class UserControllers {
-  static async createUser(request: any) {
-    try {
-      console.log(request.payload);
-      // const response = await UserRepository.createUser();
-      // return response;
-    } catch (e) {
-      throw new Error(e.message);
-    }
+  @TryCatchDecorator
+  static async createUser(request: any): Promise<any> {
+    const response = await UserRepository.createUser(request);
+    return response;
   }
 }
 

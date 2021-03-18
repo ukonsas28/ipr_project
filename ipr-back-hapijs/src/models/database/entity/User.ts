@@ -5,16 +5,16 @@ class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: false })
   firstName: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: false })
   lastName: string;
 
-  @Column()
+  @Column({ type: 'varchar', unique: true, default: '', nullable: false })
   login: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: false })
   password: string;
 }
 export default User;
