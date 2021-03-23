@@ -13,18 +13,6 @@ const userRoutes: Hapi.ServerRoute[] = [
     path: '/user',
     handler: UserControllers.createUser,
     options: {
-      // auth: {
-      //   strategies: [Strategies.staticJWT],
-      //   access: {
-      //     scope: [
-      //       Dictionary.role.superuser,
-      //       Dictionary.role.administrator,
-      //       Dictionary.role.normalUser,
-      //       Dictionary.role.contentManager,
-      //     ],
-      //     entity: 'user',
-      //   },
-      // },
       tags: ['api', 'user'],
       description: 'Create new user',
       validate: {
@@ -49,6 +37,18 @@ const userRoutes: Hapi.ServerRoute[] = [
     path: '/user/users-list',
     handler: UserControllers.getUsersList,
     options: {
+      // auth: {
+      //   strategies: [Strategies.staticJWT],
+      //   access: {
+      //     scope: [
+      //       Dictionary.role.superuser,
+      //       Dictionary.role.administrator,
+      //       Dictionary.role.normalUser,
+      //       Dictionary.role.contentManager,
+      //     ],
+      //     entity: 'user',
+      //   },
+      // },
       tags: ['api', 'user'],
       description: 'Get users list',
       plugins: {

@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  Column,
+  Generated,
+} from 'typeorm';
 import User from './User';
 
 @Entity('sessions')
@@ -6,7 +12,11 @@ class Sessions {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @Column({ type: 'uuid', unique: true })
+  @Generated('uuid')
+  token: string;
+
+  @ManyToOne(() => User, (user) => user.sessions)
   user: User;
 }
 export default Sessions;

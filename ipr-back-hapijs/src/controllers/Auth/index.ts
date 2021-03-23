@@ -3,8 +3,8 @@ import { TryCatchDecorator } from '../../decorators';
 
 class UserControllers {
   @TryCatchDecorator
-  static async auth(request: any): Promise<any> {
-    const response = await AuthRepository.auth(request);
+  static async login(request: any): Promise<any> {
+    const response = await AuthRepository.login(request);
     return response;
   }
 }
