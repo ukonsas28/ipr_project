@@ -6,9 +6,9 @@ export function TryCatchDecorator(
   descriptor: any
 ): any {
   return {
-    async value(request: any): Promise<any> {
+    async value(request: any, token?: any): Promise<any> {
       try {
-        const response = await descriptor.value(request);
+        const response = await descriptor.value(request, token);
         return response;
       } catch (e) {
         return AppErrors.generateError(e);

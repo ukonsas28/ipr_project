@@ -37,19 +37,8 @@ const userRoutes: Hapi.ServerRoute[] = [
     path: '/user/users-list',
     handler: UserControllers.getUsersList,
     options: {
-      // auth: {
-      //   strategies: [Strategies.staticJWT],
-      //   access: {
-      //     scope: [
-      //       Dictionary.role.superuser,
-      //       Dictionary.role.administrator,
-      //       Dictionary.role.normalUser,
-      //       Dictionary.role.contentManager,
-      //     ],
-      //     entity: 'user',
-      //   },
-      // },
       tags: ['api', 'user'],
+      auth: 'token',
       description: 'Get users list',
       plugins: {
         'hapi-swagger': {

@@ -6,6 +6,7 @@ import HapiSwagger from 'hapi-swagger';
 import { Connection, createConnection } from 'typeorm';
 import appRoutes from './routes';
 import 'reflect-metadata';
+import AuthControllers from './controllers/Auth';
 
 class App {
   private server: Hapi.Server;
@@ -21,10 +22,10 @@ class App {
     await this.server.register([
       Inert,
       Vision,
-      // AuthBearer,
+      AuthBearer,
       {
         plugin: HapiSwagger,
-        options: {
+        options: <HapiSwagger.RegisterOptions>{
           info: {
             title: 'API Documentation',
             description: 'API Documentation',
@@ -33,14 +34,15 @@ class App {
           documentationPath: '/documentation',
           schemes: ['http', 'https'],
           debug: true,
-          // securityDefinitions: {
-          //   Bearer: {
-          //     type: 'apiKey',
-          //     name: 'Authorization',
-          //     in: 'header',
-          //   },
-          // },
-          // security: [{ Bearer: [] }],
+          securityDefinitions: {
+            Bearer: {
+              type: 'apiKey',
+              name: 'Authorization',
+              description: 'Bearer token',
+              in: 'header',
+            },
+          },
+          security: [{ Bearer: [] }],
         },
       },
     ]);
@@ -55,20 +57,20 @@ class App {
         },
       },
     });
-    this.server.route(appRoutes);
     await this.addPlugins();
     await this.initDB();
+    this.server.auth.strategy('token', 'bearer-access-token', {
+      allowQueryToken: false,
+      // unauthorized: () => console.log('no auth'),
+      validate: AuthControllers.auth,
+    });
+    this.server.route(appRoutes);
   }
 
   public async startServer() {
     try {
       await this.initServer();
       await this.server.start();
-      // this.server.auth.strategy('token', 'bearer-access-token', {
-      //   allowQueryToken: false,
-      //   //   unauthorized: bearerValidation.unauthorized, // вешаем функцию-обработчик не авторизованных запросов
-      //   //   validate: bearerValidation.validate // а вот тут будем решать авторизирован запрос или нет
-      // });
       console.log(
         'Server running on %s://%s:%s',
         this.server.info.protocol,
