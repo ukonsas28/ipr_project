@@ -15,14 +15,20 @@ class UserControllers {
   }
 
   @TryCatchDecorator
-  static async getUsersById(request: any): Promise<any> {
-    const response = await UserRepository.getUsersById(request);
+  static async getUserById(request: any): Promise<any> {
+    const response = await UserRepository.getUserById(request);
     return response;
   }
 
   @TryCatchDecorator
-  static async updateUsersById(request: any): Promise<any> {
-    const response = await UserRepository.updateUsersById(request);
+  static async updateUserById(request: any): Promise<any> {
+    const response = await UserRepository.updateUserById(request);
+    return response;
+  }
+
+  @TryCatchDecorator
+  static async deleteUserById(request: any): Promise<any> {
+    const response = await UserRepository.deleteUserById(request);
     return response;
   }
 }

@@ -36,7 +36,7 @@ class UserRepository {
     };
   }
 
-  static async getUsersById(request: any): Promise<any> {
+  static async getUserById(request: any): Promise<any> {
     const {
       params: { id },
     } = request;
@@ -53,14 +53,14 @@ class UserRepository {
     return user;
   }
 
-  static async updateUsersById(request: any): Promise<any> {
+  static async updateUserById(request: any): Promise<any> {
     const {
       params: { id },
       payload,
     } = request;
     const userRepo = getRepository(User);
 
-    const user = await userRepo.update({ id }, payload);
+    const user = await userRepo.save({ id, ...payload });
 
     if (!user) {
       throw new AppErrors(
@@ -69,6 +69,23 @@ class UserRepository {
       );
     }
     return user;
+  }
+
+  static async deleteUserById(request: any): Promise<any> {
+    const {
+      params: { id },
+    } = request;
+    const userRepo = getRepository(User);
+
+    const user = await userRepo.delete({ id });
+
+    if (!user.affected) {
+      throw new AppErrors(
+        'Не удалось удалить информацию о пользователе',
+        StatusCodes.HTTP_STATUS_SERVICE_UNAVAILABLE
+      );
+    }
+    return { status: 'success' };
   }
 }
 

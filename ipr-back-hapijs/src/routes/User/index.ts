@@ -3,6 +3,7 @@ import {
   createUserValidate,
   getUserByIdValidate,
   updateUserValidate,
+  deleteUserValidate,
 } from '../../types/User';
 import UserControllers from '../../controllers/User/index';
 
@@ -33,7 +34,7 @@ const userRoutes: Hapi.ServerRoute[] = [
   },
   {
     method: 'GET',
-    path: '/user/user-list',
+    path: '/user/users-list',
     handler: UserControllers.getUsersList,
     options: {
       tags: ['api', 'user'],
@@ -55,7 +56,7 @@ const userRoutes: Hapi.ServerRoute[] = [
   {
     method: 'GET',
     path: '/user/{id}',
-    handler: UserControllers.getUsersById,
+    handler: UserControllers.getUserById,
     options: {
       tags: ['api', 'user'],
       description: 'Get user by id',
@@ -79,13 +80,37 @@ const userRoutes: Hapi.ServerRoute[] = [
   {
     method: 'PUT',
     path: '/user/{id}',
-    handler: UserControllers.updateUsersById,
+    handler: UserControllers.updateUserById,
     options: {
       tags: ['api', 'user'],
       description: 'Update user by id',
       validate: {
         params: <object>getUserByIdValidate,
         payload: <object>updateUserValidate,
+      },
+      plugins: {
+        'hapi-swagger': {
+          responses: {
+            200: {
+              description: 'Success request',
+            },
+            400: {
+              description: 'Fail request',
+            },
+          },
+        },
+      },
+    },
+  },
+  {
+    method: 'DELETE',
+    path: '/user/{id}',
+    handler: UserControllers.deleteUserById,
+    options: {
+      tags: ['api', 'user'],
+      description: 'Delete user by id',
+      validate: {
+        params: <object>deleteUserValidate,
       },
       plugins: {
         'hapi-swagger': {

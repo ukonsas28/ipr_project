@@ -16,3 +16,5 @@ export const getUserByIdValidate = Joi.object()
   .required();
 
 export const updateUserValidate = createUserValidate;
+
+export const deleteUserValidate = getUserByIdValidate;
