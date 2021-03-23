@@ -2,13 +2,16 @@ import { getRepository } from 'typeorm';
 import { constants as StatusCodes } from 'http2';
 import AppErrors from '../../../errors';
 import User from '../../database/entity/User';
+import { hashPassword } from '../../../helpers';
 
 class UserRepository {
   static async createUser(request: any): Promise<any> {
     const { payload } = request;
+
+    const hash = await hashPassword(payload.password);
     const userRepo = getRepository(User);
 
-    const user = await userRepo.save(payload);
+    const user = await userRepo.save({ ...payload, password: hash });
 
     if (!user) {
       throw new AppErrors(

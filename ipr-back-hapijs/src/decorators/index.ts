@@ -11,6 +11,7 @@ export function TryCatchDecorator(
         const response = await descriptor.value(request, token);
         return response;
       } catch (e) {
+        console.log(e);
         return AppErrors.generateError(e);
       }
     },

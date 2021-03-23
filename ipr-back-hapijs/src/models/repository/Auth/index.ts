@@ -3,6 +3,7 @@ import { constants as StatusCodes } from 'http2';
 import AppErrors from '../../../errors';
 import User from '../../database/entity/User';
 import Sessions from '../../database/entity/Sessions';
+import { checkPassword, hashPassword } from '../../../helpers';
 
 class AuthRepository {
   static async auth(request: any, token: any): Promise<any> {
@@ -11,6 +12,7 @@ class AuthRepository {
 
     const session = await sessionsRepo.findOne({
       where: { token },
+      relations: ['user'],
     });
 
     if (!session) {
@@ -20,7 +22,7 @@ class AuthRepository {
       };
     }
 
-    const user = await userRepo.findOne({ where: { id: session.id } });
+    const user = await userRepo.findOne({ where: { id: session.user.id } });
 
     if (!user) {
       throw new AppErrors(
@@ -48,8 +50,16 @@ class AuthRepository {
     const userRepo = getRepository(User);
     const sessionsRepo = getRepository(Sessions);
 
-    const user: any = await userRepo.findOne({ where: { login, password } });
+    const user: any = await userRepo.findOne({ where: { login } });
 
+    const checkPasswordStatus = await checkPassword(password, user.password);
+
+    if (!checkPasswordStatus) {
+      throw new AppErrors(
+        'Ошибка авторизации. Не верный пароль',
+        StatusCodes.HTTP_STATUS_SERVICE_UNAVAILABLE
+      );
+    }
     if (!user) {
       throw new AppErrors(
         'Не удалось найти пользователя',
@@ -68,9 +78,10 @@ class AuthRepository {
   static async registration(request: any): Promise<any> {
     const { payload } = request;
 
+    const hash = await hashPassword(payload.password);
     const userRepo = getRepository(User);
 
-    const user = await userRepo.save(payload);
+    const user = await userRepo.save({ ...payload, password: hash });
 
     if (!user) {
       throw new AppErrors(
