@@ -13,6 +13,12 @@ class AuthControllers {
     const response = await AuthRepository.auth(request, token);
     return response;
   }
+
+  @TryCatchDecorator
+  static async registration(request: any): Promise<any> {
+    const response = await AuthRepository.registration(request);
+    return response;
+  }
 }
 
 export default AuthControllers;
