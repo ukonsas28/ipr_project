@@ -1,6 +1,7 @@
 import Hapi from '@hapi/hapi';
 import Inert from '@hapi/inert';
 import Vision from '@hapi/vision';
+import AuthBearer from 'hapi-auth-bearer-token';
 import HapiSwagger from 'hapi-swagger';
 import { Connection, createConnection } from 'typeorm';
 import appRoutes from './routes';
@@ -20,6 +21,7 @@ class App {
     await this.server.register([
       Inert,
       Vision,
+      // AuthBearer,
       {
         plugin: HapiSwagger,
         options: {
@@ -31,6 +33,14 @@ class App {
           documentationPath: '/documentation',
           schemes: ['http', 'https'],
           debug: true,
+          // securityDefinitions: {
+          //   Bearer: {
+          //     type: 'apiKey',
+          //     name: 'Authorization',
+          //     in: 'header',
+          //   },
+          // },
+          // security: [{ Bearer: [] }],
         },
       },
     ]);
@@ -54,6 +64,11 @@ class App {
     try {
       await this.initServer();
       await this.server.start();
+      // this.server.auth.strategy('token', 'bearer-access-token', {
+      //   allowQueryToken: false,
+      //   //   unauthorized: bearerValidation.unauthorized, // вешаем функцию-обработчик не авторизованных запросов
+      //   //   validate: bearerValidation.validate // а вот тут будем решать авторизирован запрос или нет
+      // });
       console.log(
         'Server running on %s://%s:%s',
         this.server.info.protocol,

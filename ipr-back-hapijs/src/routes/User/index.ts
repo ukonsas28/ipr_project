@@ -5,7 +5,7 @@ import {
   updateUserValidate,
   deleteUserValidate,
 } from '../../types/User';
-import UserControllers from '../../controllers/User/index';
+import UserControllers from '../../controllers/User';
 
 const userRoutes: Hapi.ServerRoute[] = [
   {
@@ -13,6 +13,18 @@ const userRoutes: Hapi.ServerRoute[] = [
     path: '/user',
     handler: UserControllers.createUser,
     options: {
+      // auth: {
+      //   strategies: [Strategies.staticJWT],
+      //   access: {
+      //     scope: [
+      //       Dictionary.role.superuser,
+      //       Dictionary.role.administrator,
+      //       Dictionary.role.normalUser,
+      //       Dictionary.role.contentManager,
+      //     ],
+      //     entity: 'user',
+      //   },
+      // },
       tags: ['api', 'user'],
       description: 'Create new user',
       validate: {
