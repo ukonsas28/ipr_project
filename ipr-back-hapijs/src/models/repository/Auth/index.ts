@@ -74,7 +74,7 @@ class AuthRepository {
 
     if (!user) {
       throw new AppErrors(
-        'Не удалось найти пользователя',
+        'Не удалось создать пользователя',
         StatusCodes.HTTP_STATUS_SERVICE_UNAVAILABLE
       );
     }

@@ -7,6 +7,7 @@ import { Connection, createConnection } from 'typeorm';
 import appRoutes from './routes';
 import 'reflect-metadata';
 import AuthControllers from './controllers/Auth';
+import { authStrategy } from './helpers';
 
 class App {
   private server: Hapi.Server;
@@ -59,9 +60,8 @@ class App {
     });
     await this.addPlugins();
     await this.initDB();
-    this.server.auth.strategy('token', 'bearer-access-token', {
+    this.server.auth.strategy(authStrategy.TOKEN, 'bearer-access-token', {
       allowQueryToken: false,
-      // unauthorized: () => console.log('no auth'),
       validate: AuthControllers.auth,
     });
     this.server.route(appRoutes);

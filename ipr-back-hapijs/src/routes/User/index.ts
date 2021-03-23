@@ -6,6 +6,7 @@ import {
   deleteUserValidate,
 } from '../../types/User';
 import UserControllers from '../../controllers/User';
+import { authStrategy } from '../../helpers';
 
 const userRoutes: Hapi.ServerRoute[] = [
   {
@@ -14,6 +15,7 @@ const userRoutes: Hapi.ServerRoute[] = [
     handler: UserControllers.createUser,
     options: {
       tags: ['api', 'user'],
+      auth: authStrategy.TOKEN,
       description: 'Create new user',
       validate: {
         payload: <object>createUserValidate,
@@ -38,7 +40,7 @@ const userRoutes: Hapi.ServerRoute[] = [
     handler: UserControllers.getUsersList,
     options: {
       tags: ['api', 'user'],
-      auth: 'token',
+      auth: authStrategy.TOKEN,
       description: 'Get users list',
       plugins: {
         'hapi-swagger': {
@@ -60,6 +62,7 @@ const userRoutes: Hapi.ServerRoute[] = [
     handler: UserControllers.getUserById,
     options: {
       tags: ['api', 'user'],
+      auth: authStrategy.TOKEN,
       description: 'Get user by id',
       validate: {
         params: <object>getUserByIdValidate,
@@ -84,6 +87,7 @@ const userRoutes: Hapi.ServerRoute[] = [
     handler: UserControllers.updateUserById,
     options: {
       tags: ['api', 'user'],
+      auth: authStrategy.TOKEN,
       description: 'Update user by id',
       validate: {
         params: <object>getUserByIdValidate,
@@ -109,6 +113,7 @@ const userRoutes: Hapi.ServerRoute[] = [
     handler: UserControllers.deleteUserById,
     options: {
       tags: ['api', 'user'],
+      auth: authStrategy.TOKEN,
       description: 'Delete user by id',
       validate: {
         params: <object>deleteUserValidate,
