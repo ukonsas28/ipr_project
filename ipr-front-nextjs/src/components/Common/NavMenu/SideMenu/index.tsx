@@ -9,8 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Link from 'next/link';
 import { firstBlockMenuData, secondBlockMenuData } from 'helpers';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import CallReceivedIcon from '@material-ui/icons/CallReceived';
@@ -84,13 +83,15 @@ export default function TemporaryDrawer() {
         <List>
           {secondBlockMenuData.map((el: any) => {
             return (
-              <ListItem button key={el.title}>
-                <ListItemIcon>
-                  {el.icon === 'ExitToAppIcon' && <ExitToAppIcon />}
-                  {el.icon === 'LockOpenIcon' && <LockOpenIcon />}
-                </ListItemIcon>
-                <ListItemText primary={el.title} />
-              </ListItem>
+              <Link href="/AuthPage" key={el.title}>
+                <ListItem button>
+                  <ListItemIcon>
+                    {el.icon === 'ExitToAppIcon' && <ExitToAppIcon />}
+                    {el.icon === 'LockOpenIcon' && <LockOpenIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={el.title} />
+                </ListItem>
+              </Link>
             );
           })}
         </List>
