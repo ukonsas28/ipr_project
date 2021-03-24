@@ -8,6 +8,8 @@
     "start": "next dev"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
     "next": "10.0.4",
     "react": "17.0.1",
