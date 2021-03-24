@@ -11,6 +11,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { firstBlockMenuData, secondBlockMenuData } from 'helpers';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import CallReceivedIcon from '@material-ui/icons/CallReceived';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles({
   list: {
@@ -53,26 +61,35 @@ export default function TemporaryDrawer() {
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => {
+          {firstBlockMenuData.map((el: any) => {
             return (
-              <ListItem button key={text}>
+              <ListItem button key={el.title}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {el.icon === 'AddCircleOutlineIcon' && (
+                    <AddCircleOutlineIcon />
+                  )}
+                  {el.icon === 'CallReceivedIcon' && <CallReceivedIcon />}
+                  {el.icon === 'AutorenewIcon' && <AutorenewIcon />}
+                  {el.icon === 'DeleteOutlineIcon' && <DeleteOutlineIcon />}
+                  {el.icon === 'FormatListNumberedIcon' && (
+                    <FormatListNumberedIcon />
+                  )}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={el.title} />
               </ListItem>
             );
           })}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => {
+          {secondBlockMenuData.map((el: any) => {
             return (
-              <ListItem button key={text}>
+              <ListItem button key={el.title}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {el.icon === 'ExitToAppIcon' && <ExitToAppIcon />}
+                  {el.icon === 'LockOpenIcon' && <LockOpenIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={el.title} />
               </ListItem>
             );
           })}

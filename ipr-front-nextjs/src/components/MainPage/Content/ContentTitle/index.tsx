@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme: Theme) => {
     root: {
       marginTop: '20px',
       padding: '30px',
-      height: '92px',
     },
     title: {
       flexGrow: 1,
@@ -21,7 +20,8 @@ const ContentTitle = () => {
     <>
       <Paper elevation={3} className={classes.root}>
         <Typography variant="h6" className={classes.title}>
-          Проект индивидуального развития
+          Проект индивидуального развития сотрудника компании LAD - Широкова
+          Алексея
         </Typography>
       </Paper>
     </>

@@ -1,5 +1,5 @@
 import { Container } from '@material-ui/core';
-import NavMenu from 'Components/Common/NavMenu';
+import NavMenu from 'components/Common/NavMenu';
 import Content from './Content';
 
 const MainPageComponent = () => {
