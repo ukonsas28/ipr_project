@@ -1,14 +1,13 @@
 import PageWrapper from 'components/Common/PageWrapper';
-import Content from './Content';
 
-const MainPageComponent = () => {
+const RegistrationPageComponent = () => {
   return (
     <>
       <PageWrapper>
-        <Content />
+        <div>registration</div>
       </PageWrapper>
     </>
   );
 };
 
-export default MainPageComponent;
+export default RegistrationPageComponent;

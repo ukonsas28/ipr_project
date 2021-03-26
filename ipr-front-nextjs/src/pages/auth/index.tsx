@@ -1,5 +1,7 @@
+import AuthPageComponent from 'components/AuthPage';
+
 const AuthPage = () => {
-  return <div>dddddd</div>;
+  return <AuthPageComponent />;
 };
 
 export default AuthPage;

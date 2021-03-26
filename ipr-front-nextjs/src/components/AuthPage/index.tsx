@@ -1,14 +1,13 @@
 import PageWrapper from 'components/Common/PageWrapper';
-import Content from './Content';
 
-const MainPageComponent = () => {
+const AuthPageComponent = () => {
   return (
     <>
       <PageWrapper>
-        <Content />
+        <div>ddd</div>
       </PageWrapper>
     </>
   );
 };
 
-export default MainPageComponent;
+export default AuthPageComponent;
