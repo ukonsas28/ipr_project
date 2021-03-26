@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Link from 'next/link';
 import SideMenu from './SideMenu';
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -40,7 +41,9 @@ export default function NavMenu() {
           <Typography variant="h6" className={classes.title}>
             IPR-PROJECT
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Link href="/auth">
+            <Button color="inherit">Login</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

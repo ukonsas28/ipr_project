@@ -83,7 +83,7 @@ export default function TemporaryDrawer() {
         <List>
           {secondBlockMenuData.map((el: any) => {
             return (
-              <Link href="/AuthPage" key={el.title}>
+              <Link href={el.link} key={el.title}>
                 <ListItem button>
                   <ListItemIcon>
                     {el.icon === 'ExitToAppIcon' && <ExitToAppIcon />}

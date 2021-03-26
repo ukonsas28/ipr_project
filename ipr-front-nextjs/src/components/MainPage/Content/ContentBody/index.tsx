@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
+import { frontListTech, backListTech } from 'helpers';
 import ContentCard from './ContentCard';
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -58,19 +59,12 @@ const ContentBody = () => {
           <ContentCard
             title="FRONT-APP"
             description="Используемые технологии:"
-            techList={['TypeScript', 'ReactJS', 'NextJS', 'Material-UI']}
+            techList={frontListTech}
           />
           <ContentCard
             title="BACK-APP"
             description="Используемые технологии:"
-            techList={[
-              'TypeScript',
-              'HapiJS',
-              'TypeORM',
-              'Postgres',
-              'Docker',
-              'MakeFile',
-            ]}
+            techList={backListTech}
           />
         </Box>
       </Paper>

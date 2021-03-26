@@ -52,11 +52,13 @@ const ContentCard = ({ title, description, techList }: any) => {
           {description}
         </Typography>
         <List>
-          {techList.map((el: string) => {
+          {techList.map((el: any) => {
             return (
-              <ListItem button key={el}>
-                <ListItemText primary={el} />
-              </ListItem>
+              <a href={el.link} key={el.title} target="_blank" rel="noreferrer">
+                <ListItem button key={el.title}>
+                  <ListItemText primary={el.title} />
+                </ListItem>
+              </a>
             );
           })}
         </List>
