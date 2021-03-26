@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) => {
     title: {
       flexGrow: 1,
       fontSize: '18px',
+      cursor: 'pointer',
     },
   });
 });
@@ -38,9 +39,11 @@ export default function NavMenu() {
             aria-label="menu">
             <SideMenu />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            IPR-PROJECT
-          </Typography>
+          <Link href="/">
+            <Typography variant="h6" className={classes.title}>
+              IPR-PROJECT
+            </Typography>
+          </Link>
           <Link href="/auth">
             <Button color="inherit">Login</Button>
           </Link>

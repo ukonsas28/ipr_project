@@ -1,6 +1,7 @@
 import PageWrapper from 'components/Common/PageWrapper';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
+import { FC } from 'react';
 import RegistrationForm from './RegistrationForm';
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -14,17 +15,28 @@ const useStyles = makeStyles((theme: Theme) => {
   });
 });
 
-const AuthPageComponent = () => {
+interface IProps {
+  onSubmit: any;
+  setFormValue: any;
+  formValue: any;
+}
+
+const RegistrationPageComponent: FC<IProps> = (props: IProps) => {
+  const { onSubmit, setFormValue, formValue } = props;
   const classes = useStyles();
   return (
     <>
       <PageWrapper>
         <Container maxWidth="sm" disableGutters className={classes.root}>
-          <RegistrationForm />
+          <RegistrationForm
+            onSubmit={onSubmit}
+            setFormValue={setFormValue}
+            formValue={formValue}
+          />
         </Container>
       </PageWrapper>
     </>
   );
 };
 
-export default AuthPageComponent;
+export default RegistrationPageComponent;

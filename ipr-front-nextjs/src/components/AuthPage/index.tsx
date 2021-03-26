@@ -1,6 +1,7 @@
 import PageWrapper from 'components/Common/PageWrapper';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
+import { FC } from 'react';
 import AuthForm from './AuthForm';
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -13,14 +14,28 @@ const useStyles = makeStyles((theme: Theme) => {
     },
   });
 });
+interface IProps {
+  onSubmit: any;
+  setFormValue: any;
+  formValue: any;
+}
 
-const AuthPageComponent = () => {
+const AuthPageComponent: FC<IProps> = ({
+  onSubmit,
+  setFormValue,
+  formValue,
+}: IProps) => {
   const classes = useStyles();
+
   return (
     <>
       <PageWrapper>
         <Container maxWidth="sm" disableGutters className={classes.root}>
-          <AuthForm />
+          <AuthForm
+            onSubmit={onSubmit}
+            setFormValue={setFormValue}
+            formValue={formValue}
+          />
         </Container>
       </PageWrapper>
     </>

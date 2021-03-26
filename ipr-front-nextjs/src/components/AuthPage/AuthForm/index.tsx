@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextInput from 'components/Common/Form/TextInput';
 import Paper from '@material-ui/core/Paper';
@@ -31,16 +31,19 @@ const useStyles = makeStyles((theme: Theme) => {
     },
   });
 });
+interface IProps {
+  onSubmit: any;
+  setFormValue: any;
+  formValue: any;
+}
 
-const AuthForm = () => {
+const AuthForm: FC<IProps> = ({
+  onSubmit,
+  setFormValue,
+  formValue,
+}: IProps) => {
   const classes = useStyles();
-  const [authFormValue, setAuthFromValue] = useState<object>({
-    login: '',
-    password: '',
-  });
-  const onSubmit = () => {
-    console.log(authFormValue);
-  };
+
   return (
     <Paper elevation={3} className={classes.root}>
       <Typography variant="h6" className={classes.title}>
@@ -49,14 +52,14 @@ const AuthForm = () => {
       <TextInput
         label="Login"
         value="login"
-        setFormValue={setAuthFromValue}
-        formValue={authFormValue}
+        setFormValue={setFormValue}
+        formValue={formValue}
       />
       <PasswordInput
         label="Password"
         value="password"
-        setFormValue={setAuthFromValue}
-        formValue={authFormValue}
+        setFormValue={setFormValue}
+        formValue={formValue}
       />
       <Button
         variant="outlined"
