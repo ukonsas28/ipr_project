@@ -1,3 +1,4 @@
+export const baseUrl = 'http://0.0.0.0:8888';
 export const firstBlockMenuData: { title: string; icon: any }[] = [
   {
     title: 'Создать нового пользователя',
@@ -32,7 +33,7 @@ export const secondBlockMenuData: {
     link: '/auth',
   },
   {
-    title: 'Sign in',
+    title: 'Sign up',
     icon: 'LockOpenIcon',
     link: '/registration',
   },

@@ -1,6 +1,7 @@
 import RegistrationPageComponent from 'components/RegistrationPage';
 import axios from 'axios';
 import { useState } from 'react';
+import { baseUrl } from 'helpers';
 
 const RegistrationPage = () => {
   const [registrationFormValue, setAuthFromValue] = useState<any>({
@@ -18,7 +19,7 @@ const RegistrationPage = () => {
       ) {
         const { repeatPassword, ...payload } = registrationFormValue;
         const { data } = await axios.post(
-          'http://0.0.0.0:8888/auth/registration',
+          `${baseUrl}/auth/registration`,
           payload
         );
         console.log(data);

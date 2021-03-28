@@ -15,7 +15,8 @@
     "next": "10.0.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "sass": "^1.32.0"
+    "sass": "^1.32.0",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@types/node": "^14.14.20",

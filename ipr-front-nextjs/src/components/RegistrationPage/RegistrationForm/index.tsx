@@ -1,11 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextInput from 'components/Common/Form/TextInput';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import PasswordInput from 'components/Common/Form/PasswordInput';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
 
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({

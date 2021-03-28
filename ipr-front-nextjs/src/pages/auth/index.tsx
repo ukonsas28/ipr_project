@@ -1,6 +1,8 @@
 import AuthPageComponent from 'components/AuthPage';
 import axios from 'axios';
 import { useState } from 'react';
+import { baseUrl } from 'helpers';
+import { setTokenCookies } from 'helpers/cookies';
 
 const AuthPage = () => {
   const [authFormValue, setAuthFromValue] = useState<any>({
@@ -10,10 +12,8 @@ const AuthPage = () => {
   const onSubmit = async () => {
     console.log(authFormValue, 'authFormValue');
     try {
-      const { data } = await axios.post(
-        'http://0.0.0.0:8888/auth/login',
-        authFormValue
-      );
+      const { data } = await axios.post(`${baseUrl}/auth/login`, authFormValue);
+      setTokenCookies(data.token);
       console.log(data);
     } catch (e) {
       console.log(e, 'here');
