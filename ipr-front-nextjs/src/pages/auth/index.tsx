@@ -3,22 +3,24 @@ import axios from 'axios';
 import { useState } from 'react';
 import { baseUrl } from 'helpers';
 import { setTokenCookies } from 'helpers/cookies';
+import { useRouter } from 'next/router';
 
 const AuthPage = () => {
   const [authFormValue, setAuthFromValue] = useState<any>({
     login: '',
     password: '',
   });
+  const router = useRouter();
+
   const onSubmit = async () => {
-    console.log(authFormValue, 'authFormValue');
     try {
       const { data } = await axios.post(`${baseUrl}/auth/login`, authFormValue);
       setTokenCookies(data.token);
-      console.log(data);
     } catch (e) {
-      console.log(e, 'here');
+      console.log(e);
     }
   };
+
   return (
     <AuthPageComponent
       onSubmit={onSubmit}
