@@ -1,24 +1,25 @@
 import AuthPageComponent from 'components/AuthPage';
-import axios from 'axios';
-import { useState } from 'react';
-import { baseUrl } from 'helpers';
-import { setTokenCookies } from 'helpers/cookies';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserDataAction } from 'store/UserData/actions';
+import { getUserToken } from 'store/UserData/selectors';
 
 const AuthPage = () => {
   const [authFormValue, setAuthFromValue] = useState<any>({
     login: '',
     password: '',
   });
+  const dispatch = useDispatch();
   const router = useRouter();
+  const token = useSelector(getUserToken);
 
-  const onSubmit = async () => {
-    try {
-      const { data } = await axios.post(`${baseUrl}/auth/login`, authFormValue);
-      setTokenCookies(data.token);
-    } catch (e) {
-      console.log(e);
-    }
+  useEffect(() => {
+    token && router.push('/');
+  }, [token]);
+
+  const onSubmit = () => {
+    dispatch(getUserDataAction(authFormValue));
   };
 
   return (

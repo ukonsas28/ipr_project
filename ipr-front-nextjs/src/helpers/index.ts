@@ -53,6 +53,14 @@ export const frontListTech: { title: string; link: string }[] = [
     link: 'https://nextjs.org/',
   },
   {
+    title: 'Redux',
+    link: 'https://redux.js.org/',
+  },
+  {
+    title: 'Redux Thunk',
+    link: 'https://www.npmjs.com/package/redux-thunk',
+  },
+  {
     title: 'Material-UI',
     link: 'https://material-ui.com/',
   },
