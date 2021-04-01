@@ -23,10 +23,6 @@ class UserRepository {
   }
 
   static async getUsersList(request: any): Promise<any> {
-    const {
-      auth: { credentials },
-    } = request;
-
     const userRepo = getRepository(User);
 
     const usersList = await userRepo.find();

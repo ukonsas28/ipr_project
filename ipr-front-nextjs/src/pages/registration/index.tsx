@@ -1,7 +1,9 @@
 import RegistrationPageComponent from 'components/RegistrationPage';
-import axios from 'axios';
-import { useState } from 'react';
-import { baseUrl } from 'helpers';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { registrationUserAction } from 'store/UserData/actions';
+import { getUserToken } from 'store/UserData/selectors';
 
 const RegistrationPage = () => {
   const [registrationFormValue, setAuthFromValue] = useState<any>({
@@ -11,23 +13,17 @@ const RegistrationPage = () => {
     password: '',
     repeatPassword: '',
   });
+  const router = useRouter();
+  const token = useSelector(getUserToken);
 
+  useEffect(() => {
+    token && router.push('/');
+  }, [token]);
+  const dispatch = useDispatch();
   const onSubmit = async () => {
-    try {
-      if (
-        registrationFormValue.password === registrationFormValue.repeatPassword
-      ) {
-        const { repeatPassword, ...payload } = registrationFormValue;
-        const { data } = await axios.post(
-          `${baseUrl}/auth/registration`,
-          payload
-        );
-        console.log(data);
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    dispatch(registrationUserAction(registrationFormValue));
   };
+
   return (
     <RegistrationPageComponent
       onSubmit={onSubmit}

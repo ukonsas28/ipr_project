@@ -15,3 +15,9 @@ export const registrationUserValidate = Joi.object()
     password: Joi.string().required().example('12345'),
   })
   .required();
+
+export const logoutUserValidate = Joi.object()
+  .keys({
+    token: Joi.string().required().example(''),
+  })
+  .required();

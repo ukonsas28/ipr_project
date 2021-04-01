@@ -19,6 +19,12 @@ class AuthControllers {
     const response = await AuthRepository.registration(request);
     return response;
   }
+
+  @TryCatchDecorator
+  static async logout(request: any): Promise<any> {
+    const response = await AuthRepository.logout(request);
+    return response;
+  }
 }
 
 export default AuthControllers;

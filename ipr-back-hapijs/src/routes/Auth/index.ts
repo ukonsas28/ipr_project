@@ -1,5 +1,9 @@
 import * as Hapi from '@hapi/hapi';
-import { loginUserValidate, registrationUserValidate } from '../../types/Auth';
+import {
+  loginUserValidate,
+  logoutUserValidate,
+  registrationUserValidate,
+} from '../../types/Auth';
 import AuthControllers from '../../controllers/Auth';
 
 const authRoutes: Hapi.ServerRoute[] = [
@@ -36,6 +40,30 @@ const authRoutes: Hapi.ServerRoute[] = [
       description: 'Registration new user in app',
       validate: {
         payload: <object>registrationUserValidate,
+      },
+      plugins: {
+        'hapi-swagger': {
+          responses: {
+            200: {
+              description: 'Success request',
+            },
+            400: {
+              description: 'Fail request',
+            },
+          },
+        },
+      },
+    },
+  },
+  {
+    method: 'POST',
+    path: '/auth/logout',
+    handler: AuthControllers.logout,
+    options: {
+      tags: ['api', 'auth'],
+      description: 'Logout the app',
+      validate: {
+        payload: <object>logoutUserValidate,
       },
       plugins: {
         'hapi-swagger': {

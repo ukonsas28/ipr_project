@@ -92,6 +92,24 @@ class AuthRepository {
 
     return user;
   }
+
+  static async logout(request: any): Promise<any> {
+    const {
+      payload: { token },
+    } = request;
+
+    const sessionsRepo = getRepository(Sessions);
+
+    const session = await sessionsRepo.delete({ token });
+
+    if (!session.affected) {
+      throw new AppErrors(
+        'Не удалось удалить сессию',
+        StatusCodes.HTTP_STATUS_SERVICE_UNAVAILABLE
+      );
+    }
+    return { status: 'success' };
+  }
 }
 
 export default AuthRepository;

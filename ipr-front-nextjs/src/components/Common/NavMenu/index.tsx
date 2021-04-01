@@ -6,6 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserToken } from 'store/UserData/selectors';
+import Avatar from '@material-ui/core/Avatar';
+import { logoutUserAction } from 'store/UserData/actions';
 import SideMenu from './SideMenu';
 
 const useStyles = makeStyles((theme: Theme) => {
@@ -27,6 +31,11 @@ const useStyles = makeStyles((theme: Theme) => {
 
 export default function NavMenu() {
   const classes = useStyles();
+  const token = useSelector(getUserToken);
+  const dispatch = useDispatch();
+  const logoutUser = () => {
+    dispatch(logoutUserAction(token));
+  };
 
   return (
     <div className={classes.root}>
@@ -44,9 +53,18 @@ export default function NavMenu() {
               IPR-PROJECT
             </Typography>
           </Link>
-          <Link href="/auth">
-            <Button color="inherit">Login</Button>
-          </Link>
+          {token ? (
+            <>
+              <Avatar />
+              <Button onClick={logoutUser} color="inherit">
+                Logout
+              </Button>
+            </>
+          ) : (
+            <Link href="/auth">
+              <Button color="inherit">Login</Button>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
     </div>
