@@ -1,20 +1,18 @@
+import React, { FC } from 'react';
+import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Provider } from 'react-redux';
-import { useStore } from 'store';
+import { wrapper } from '../store';
 import 'assets/scss/main.scss';
 
-function MyApp({ Component, pageProps }: any) {
-  const store = useStore(pageProps.initialReduxState);
+const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
         <title>IPR-PROJECT</title>
       </Head>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      <Component {...pageProps} />
     </>
   );
-}
+};
 
-export default MyApp;
+export default wrapper.withRedux(WrappedApp);

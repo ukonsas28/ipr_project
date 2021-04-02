@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextInput from 'components/Common/Form/TextInput';
 import Paper from '@material-ui/core/Paper';

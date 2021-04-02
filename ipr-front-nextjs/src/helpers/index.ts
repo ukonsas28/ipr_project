@@ -1,24 +1,33 @@
 export const baseUrl = 'http://0.0.0.0:8888';
-export const firstBlockMenuData: { title: string; icon: any }[] = [
+export const firstBlockMenuData: {
+  title: string;
+  icon: any;
+  link: string;
+}[] = [
   {
     title: 'Создать нового пользователя',
     icon: 'AddCircleOutlineIcon',
+    link: '/users',
   },
   {
     title: 'Получить пользователя по id',
     icon: 'CallReceivedIcon',
+    link: '/users/get',
   },
   {
     title: 'Обновить пользователя по id',
     icon: 'AutorenewIcon',
+    link: '/users/update',
   },
   {
     title: 'Удалить пользователя по id',
     icon: 'DeleteOutlineIcon',
+    link: '/users/delete',
   },
   {
     title: 'Получить список всех пользователей',
     icon: 'FormatListNumberedIcon',
+    link: '/users/get_all',
   },
 ];
 

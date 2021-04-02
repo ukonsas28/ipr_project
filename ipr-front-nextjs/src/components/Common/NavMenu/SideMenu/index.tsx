@@ -62,20 +62,22 @@ export default function TemporaryDrawer() {
         <List>
           {firstBlockMenuData.map((el: any) => {
             return (
-              <ListItem button key={el.title}>
-                <ListItemIcon>
-                  {el.icon === 'AddCircleOutlineIcon' && (
-                    <AddCircleOutlineIcon />
-                  )}
-                  {el.icon === 'CallReceivedIcon' && <CallReceivedIcon />}
-                  {el.icon === 'AutorenewIcon' && <AutorenewIcon />}
-                  {el.icon === 'DeleteOutlineIcon' && <DeleteOutlineIcon />}
-                  {el.icon === 'FormatListNumberedIcon' && (
-                    <FormatListNumberedIcon />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={el.title} />
-              </ListItem>
+              <Link href={el.link} key={el.title}>
+                <ListItem button>
+                  <ListItemIcon>
+                    {el.icon === 'AddCircleOutlineIcon' && (
+                      <AddCircleOutlineIcon />
+                    )}
+                    {el.icon === 'CallReceivedIcon' && <CallReceivedIcon />}
+                    {el.icon === 'AutorenewIcon' && <AutorenewIcon />}
+                    {el.icon === 'DeleteOutlineIcon' && <DeleteOutlineIcon />}
+                    {el.icon === 'FormatListNumberedIcon' && (
+                      <FormatListNumberedIcon />
+                    )}
+                  </ListItemIcon>
+                  <ListItemText primary={el.title} />
+                </ListItem>
+              </Link>
             );
           })}
         </List>

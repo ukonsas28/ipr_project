@@ -11,6 +11,7 @@ import { getUserToken } from 'store/UserData/selectors';
 import Avatar from '@material-ui/core/Avatar';
 import { logoutUserAction } from 'store/UserData/actions';
 import SideMenu from './SideMenu';
+import { removeTokenCookies } from 'helpers/cookies';
 
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
@@ -35,6 +36,7 @@ export default function NavMenu() {
   const dispatch = useDispatch();
   const logoutUser = () => {
     dispatch(logoutUserAction(token));
+    removeTokenCookies();
   };
 
   return (
