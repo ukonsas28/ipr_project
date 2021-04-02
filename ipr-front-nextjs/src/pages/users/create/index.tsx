@@ -6,8 +6,8 @@ import { GetServerSideProps } from 'next';
 import cookies from 'next-cookies';
 
 const UsersPage = ({ data }: any) => {
-  if (data === 'NOAUTH') {
-    return <ClosePage data={data} />;
+  if (data === 'NO_AUTH') {
+    return <ClosePage />;
   }
 
   return <UsersPageComponent data={data} />;
@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       );
       return { props: { data } };
     } catch (e) {
-      return { props: { data: 'NOAUTH' } };
+      return { props: { data: 'NO_AUTH' } };
     }
   }
 );

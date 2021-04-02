@@ -7,7 +7,7 @@ export const firstBlockMenuData: {
   {
     title: 'Создать нового пользователя',
     icon: 'AddCircleOutlineIcon',
-    link: '/users',
+    link: '/users/create',
   },
   {
     title: 'Получить пользователя по id',

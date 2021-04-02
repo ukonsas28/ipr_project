@@ -14,11 +14,8 @@ const useStyles = makeStyles((theme: Theme) => {
     },
   });
 });
-interface IProps {
-  data: any;
-}
 
-const ClosePage: FC<IProps> = ({ data }: IProps) => {
+const ClosePage: FC = () => {
   const classes = useStyles();
 
   return (
