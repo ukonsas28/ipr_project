@@ -2,8 +2,8 @@ import AuthPageComponent from 'components/AuthPage';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserAction } from 'store/UserData/actions';
-import { getUserToken } from 'store/UserData/selectors';
+import { loginUserAction } from 'store/AuthData/actions';
+import { getUserToken } from 'store/AuthData/selectors';
 
 const AuthPage = () => {
   const [authFormValue, setAuthFromValue] = useState<any>({

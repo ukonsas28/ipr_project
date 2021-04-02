@@ -3,7 +3,7 @@ import { baseUrl } from 'helpers';
 import { getTokenCookies, setTokenCookies } from 'helpers/cookies';
 import { TLoginUserParams, TRegistrationUser } from './types';
 
-export enum UserDataActionsTypes {
+export enum AuthDataActionsTypes {
   loginUser = 'LOGIN_USER',
   registrationUSer = 'REGISTRATION_USER',
   userLogout = 'USER_LOGOUT',
@@ -15,7 +15,7 @@ export const loginUserAction = (params: TLoginUserParams) => {
     try {
       const { data } = await axios.post(`${baseUrl}/auth/login`, params);
       setTokenCookies(data.token);
-      dispatch({ type: UserDataActionsTypes.loginUser, payload: data.token });
+      dispatch({ type: AuthDataActionsTypes.loginUser, payload: data.token });
     } catch (e) {
       console.log(e);
     }
@@ -45,12 +45,13 @@ export const logoutUserAction = (token: string) => {
   return async (dispatch: any) => {
     try {
       await axios.post(`${baseUrl}/auth/logout`, { token });
-      dispatch({ type: UserDataActionsTypes.userLogout });
+      dispatch({ type: AuthDataActionsTypes.userLogout });
     } catch (e) {
       console.log(e);
     }
   };
 };
+
 export const getUserPermission = () => {
   return async (dispatch: any) => {
     const token = getTokenCookies();
@@ -59,7 +60,7 @@ export const getUserPermission = () => {
         token,
       });
       dispatch({
-        type: UserDataActionsTypes.getUserPermission,
+        type: AuthDataActionsTypes.getUserPermission,
         payload: data,
       });
     } catch (e) {

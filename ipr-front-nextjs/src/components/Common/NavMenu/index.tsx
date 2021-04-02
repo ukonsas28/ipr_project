@@ -11,9 +11,9 @@ import {
   getUserFirstName,
   getUserLastName,
   getUserToken,
-} from 'store/UserData/selectors';
+} from 'store/AuthData/selectors';
 import Avatar from '@material-ui/core/Avatar';
-import { logoutUserAction } from 'store/UserData/actions';
+import { logoutUserAction } from 'store/AuthData/actions';
 import { removeTokenCookies } from 'helpers/cookies';
 import SideMenu from './SideMenu';
 

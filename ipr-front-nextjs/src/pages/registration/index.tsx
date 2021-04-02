@@ -2,8 +2,8 @@ import RegistrationPageComponent from 'components/RegistrationPage';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { registrationUserAction } from 'store/UserData/actions';
-import { getUserToken } from 'store/UserData/selectors';
+import { registrationUserAction } from 'store/AuthData/actions';
+import { getUserToken } from 'store/AuthData/selectors';
 
 const RegistrationPage = () => {
   const [registrationFormValue, setAuthFromValue] = useState<any>({

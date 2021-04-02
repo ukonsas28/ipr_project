@@ -1,4 +1,4 @@
-export type TUserData = {
+export type TAuthData = {
   token: string;
   firstName: string;
   lastName: string;

@@ -4,8 +4,8 @@ import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import {
   getUserPermission,
-  UserDataActionsTypes,
-} from 'store/UserData/actions';
+  AuthDataActionsTypes,
+} from 'store/AuthData/actions';
 import { getTokenCookies } from 'helpers/cookies';
 import { wrapper } from '../store';
 import 'assets/scss/main.scss';
@@ -16,7 +16,7 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
 
   useEffect(() => {
     if (token) {
-      dispatch({ type: UserDataActionsTypes.loginUser, payload: token });
+      dispatch({ type: AuthDataActionsTypes.loginUser, payload: token });
       dispatch(getUserPermission());
     }
   }, [token]);

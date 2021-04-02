@@ -1,29 +1,29 @@
-import { UserDataActionsTypes } from 'store/UserData/actions';
-import { TUserData } from './types';
+import { AuthDataActionsTypes } from 'store/AuthData/actions';
+import { TAuthData } from './types';
 
-const initialState: TUserData = {
+const initialState: TAuthData = {
   token: '',
   firstName: '',
   lastName: '',
 };
 
-const userDataReducer = (
+const authDataReducer = (
   state = initialState,
   action: { type: string; payload: any }
 ) => {
   switch (action.type) {
-    case UserDataActionsTypes.loginUser:
+    case AuthDataActionsTypes.loginUser:
       return {
         ...state,
         token: action.payload,
       };
-    case UserDataActionsTypes.getUserPermission:
+    case AuthDataActionsTypes.getUserPermission:
       return {
         ...state,
         firstName: action.payload.firstName,
         lastName: action.payload.lastName,
       };
-    case UserDataActionsTypes.userLogout:
+    case AuthDataActionsTypes.userLogout:
       return {
         ...state,
         token: '',
@@ -35,4 +35,4 @@ const userDataReducer = (
   }
 };
 
-export default userDataReducer;
+export default authDataReducer;

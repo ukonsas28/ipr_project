@@ -1,12 +1,12 @@
 import { TStore } from 'store/rootTypes';
 
 export const getUserToken = (state: TStore) => {
-  return state.userData.token;
+  return state.authData.token;
 };
 
 export const getUserFirstName = (state: TStore) => {
-  return state.userData.firstName;
+  return state.authData.firstName;
 };
 export const getUserLastName = (state: TStore) => {
-  return state.userData.lastName;
+  return state.authData.lastName;
 };
