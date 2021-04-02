@@ -21,3 +21,4 @@ export const logoutUserValidate = Joi.object()
     token: Joi.string().required().example(''),
   })
   .required();
+export const getUserPermissionValidate = logoutUserValidate;

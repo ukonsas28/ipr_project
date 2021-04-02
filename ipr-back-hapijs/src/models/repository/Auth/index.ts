@@ -70,7 +70,6 @@ class AuthRepository {
     const session = await sessionsRepo.save({ user: user.id });
 
     return {
-      login: user.login,
       token: session.token,
     };
   }
@@ -109,6 +108,30 @@ class AuthRepository {
       );
     }
     return { status: 'success' };
+  }
+
+  static async getUserPermission(request: any): Promise<any> {
+    const {
+      payload: { token },
+    } = request;
+
+    const sessionsRepo = getRepository(Sessions);
+
+    const session: any = await sessionsRepo.findOne({
+      where: { token },
+      relations: ['user'],
+    });
+
+    if (!session) {
+      throw new AppErrors(
+        'Не удалось получить права пользователя',
+        StatusCodes.HTTP_STATUS_SERVICE_UNAVAILABLE
+      );
+    }
+    return {
+      firstName: session.user.firstName,
+      lastName: session.user.lastName,
+    };
   }
 }
 

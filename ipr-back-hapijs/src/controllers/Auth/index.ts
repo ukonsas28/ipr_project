@@ -25,6 +25,12 @@ class AuthControllers {
     const response = await AuthRepository.logout(request);
     return response;
   }
+
+  @TryCatchDecorator
+  static async getUserPermission(request: any): Promise<any> {
+    const response = await AuthRepository.getUserPermission(request);
+    return response;
+  }
 }
 
 export default AuthControllers;
