@@ -2,8 +2,9 @@ import { UserDataActionsTypes } from 'store/UserData/actions';
 import { TUserData } from './types';
 
 const initialState: TUserData = {
-  login: '',
   token: '',
+  firstName: '',
+  lastName: '',
 };
 
 const userDataReducer = (
@@ -11,17 +12,23 @@ const userDataReducer = (
   action: { type: string; payload: any }
 ) => {
   switch (action.type) {
-    case UserDataActionsTypes.getUserData:
+    case UserDataActionsTypes.loginUser:
       return {
         ...state,
-        login: action.payload.login,
-        token: action.payload.token,
+        token: action.payload,
+      };
+    case UserDataActionsTypes.getUserPermission:
+      return {
+        ...state,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
       };
     case UserDataActionsTypes.userLogout:
       return {
         ...state,
-        login: '',
         token: '',
+        firstName: '',
+        lastName: '',
       };
     default:
       return state;

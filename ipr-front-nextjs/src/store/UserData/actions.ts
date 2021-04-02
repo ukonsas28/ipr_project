@@ -1,20 +1,21 @@
 import axios from 'axios';
 import { baseUrl } from 'helpers';
-import { setTokenCookies } from 'helpers/cookies';
-import { TGetUserDataParams, TRegistrationUser } from './types';
+import { getTokenCookies, setTokenCookies } from 'helpers/cookies';
+import { TLoginUserParams, TRegistrationUser } from './types';
 
 export enum UserDataActionsTypes {
-  getUserData = 'GET_USER_DATA',
+  loginUser = 'LOGIN_USER',
   registrationUSer = 'REGISTRATION_USER',
   userLogout = 'USER_LOGOUT',
+  getUserPermission = 'GET_USER_PERMISSION',
 }
 
-export const getUserDataAction = (params: TGetUserDataParams) => {
+export const loginUserAction = (params: TLoginUserParams) => {
   return async (dispatch: any) => {
     try {
       const { data } = await axios.post(`${baseUrl}/auth/login`, params);
       setTokenCookies(data.token);
-      dispatch({ type: UserDataActionsTypes.getUserData, payload: data });
+      dispatch({ type: UserDataActionsTypes.loginUser, payload: data.token });
     } catch (e) {
       console.log(e);
     }
@@ -28,7 +29,7 @@ export const registrationUserAction = (registrationData: TRegistrationUser) => {
         const { repeatPassword, ...payload } = registrationData;
         await axios.post(`${baseUrl}/auth/registration`, payload);
         dispatch(
-          getUserDataAction({
+          loginUserAction({
             login: registrationData.login,
             password: registrationData.password,
           })
@@ -45,6 +46,22 @@ export const logoutUserAction = (token: string) => {
     try {
       await axios.post(`${baseUrl}/auth/logout`, { token });
       dispatch({ type: UserDataActionsTypes.userLogout });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const getUserPermission = () => {
+  return async (dispatch: any) => {
+    const token = getTokenCookies();
+    try {
+      const { data } = await axios.post(`${baseUrl}/auth/user-permission`, {
+        token,
+      });
+      dispatch({
+        type: UserDataActionsTypes.getUserPermission,
+        payload: data,
+      });
     } catch (e) {
       console.log(e);
     }

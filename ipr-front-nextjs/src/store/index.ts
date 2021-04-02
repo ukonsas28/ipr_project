@@ -9,4 +9,4 @@ const makeStore: MakeStore<TStore> = (context: Context) => {
   return createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 };
 
-export const wrapper = createWrapper<TStore>(makeStore, { debug: true });
+export const wrapper = createWrapper<TStore>(makeStore);

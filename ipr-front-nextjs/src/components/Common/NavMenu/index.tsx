@@ -7,11 +7,15 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserToken } from 'store/UserData/selectors';
+import {
+  getUserFirstName,
+  getUserLastName,
+  getUserToken,
+} from 'store/UserData/selectors';
 import Avatar from '@material-ui/core/Avatar';
 import { logoutUserAction } from 'store/UserData/actions';
-import SideMenu from './SideMenu';
 import { removeTokenCookies } from 'helpers/cookies';
+import SideMenu from './SideMenu';
 
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
@@ -33,6 +37,8 @@ const useStyles = makeStyles((theme: Theme) => {
 export default function NavMenu() {
   const classes = useStyles();
   const token = useSelector(getUserToken);
+  const firstName = useSelector(getUserFirstName);
+  const lastName = useSelector(getUserLastName);
   const dispatch = useDispatch();
   const logoutUser = () => {
     dispatch(logoutUserAction(token));
@@ -57,7 +63,11 @@ export default function NavMenu() {
           </Link>
           {token ? (
             <>
-              <Avatar />
+              <Avatar>
+                {firstName &&
+                  lastName &&
+                  `${firstName[0].toUpperCase()}.${lastName[0].toUpperCase()}`}
+              </Avatar>
               <Button onClick={logoutUser} color="inherit">
                 Logout
               </Button>

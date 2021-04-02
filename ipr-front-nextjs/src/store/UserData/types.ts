@@ -1,9 +1,10 @@
 export type TUserData = {
-  login: string;
   token: string;
+  firstName: string;
+  lastName: string;
 };
 
-export type TGetUserDataParams = {
+export type TLoginUserParams = {
   login: string;
   password: string;
 };

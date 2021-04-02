@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         `http://172.17.0.1:8888/user/users-list`,
         {
           headers: {
-            Authorization: `Bearer ${authToken}e`,
+            Authorization: `Bearer ${authToken}`,
           },
         }
       );

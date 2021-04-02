@@ -2,7 +2,7 @@ import AuthPageComponent from 'components/AuthPage';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserDataAction } from 'store/UserData/actions';
+import { loginUserAction } from 'store/UserData/actions';
 import { getUserToken } from 'store/UserData/selectors';
 
 const AuthPage = () => {
@@ -19,7 +19,7 @@ const AuthPage = () => {
   }, [token]);
 
   const onSubmit = () => {
-    dispatch(getUserDataAction(authFormValue));
+    dispatch(loginUserAction(authFormValue));
   };
 
   return (
