@@ -28,14 +28,24 @@ initial:
 	docker pull dpage/pgadmin4
 
 
+install_dep: front_dep_install back_dep_install
 
 up: front_app back_app postgres pg_admin
+
 
 down:
 	docker stop $(APP_NAME)_${FRONT_APP_NAME} $(APP_NAME)_${BACK_APP_NAME} \
 		$(APP_NAME)_${POSTGRES_NAME} $(APP_NAME)_${PG_ADMIN_NAME}
 
 
+# install 
+front_dep_install:
+	cd ${FRONT_APP_PATH} && npm i
+
+back_dep_install:
+	cd ${BACK_APP_PATH} && npm i
+
+# up
 front_app:
 	docker rm $(APP_NAME)_${FRONT_APP_NAME} || true
 	docker run --rm -it \
@@ -76,7 +86,7 @@ pg_admin:
 		-d dpage/pgadmin4
 
 
-
+# start
 start_front: 
 	docker exec -it $(APP_NAME)_${FRONT_APP_NAME} sh -ac 'npm start'
 
