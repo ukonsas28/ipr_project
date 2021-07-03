@@ -9,6 +9,7 @@ interface IProps {
 }
 const PasswordInput: FC<IProps> = (props: IProps) => {
   const { label, setFormValue, formValue, value } = props;
+
   return (
     <>
       <TextField

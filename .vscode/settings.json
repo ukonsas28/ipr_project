@@ -1,0 +1,5 @@
+{
+    "eslint.workingDirectories":  [
+        "./ipr-front-nextjs" ,
+     ]
+}

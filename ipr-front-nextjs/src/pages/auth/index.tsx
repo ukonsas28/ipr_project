@@ -11,6 +11,7 @@ const AuthPage = () => {
     password: '',
   });
   const dispatch = useDispatch();
+
   const router = useRouter();
   const token = useSelector(getUserToken);
 
