@@ -1,10 +1,10 @@
 import PageWrapper from 'components/Common/PageWrapper';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import { FC } from 'react';
 import CloseContent from './CloseContent';
 
-const useStyles = makeStyles((theme: Theme) => {
+const useStyles = makeStyles(() => {
   return createStyles({
     root: {
       height: 'calc(100vh - 64px)',

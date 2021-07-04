@@ -54,7 +54,7 @@ export default function TemporaryDrawer() {
     return (
       <div
         className={clsx(classes.list, {
-          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+          [classes.fullList]: anchor === 'left',
         })}
         role="presentation"
         onClick={toggleDrawer(anchor, false)}

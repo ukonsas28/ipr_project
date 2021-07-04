@@ -1,8 +1,8 @@
 import Paper from '@material-ui/core/Paper';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme: Theme) => {
+const useStyles = makeStyles(() => {
   return createStyles({
     root: {
       marginTop: '20px',

@@ -1,5 +1,5 @@
-import { TUserData } from './AuthData/types';
+import { TAuthData } from './AuthData/types';
 
 export type TStore = {
-  authData: TUserData;
+  authData: TAuthData;
 };

@@ -21,6 +21,8 @@ const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => {
     }
   }, [token]);
 
+  console.log(process.env.TEST);
+
   return (
     <>
       <Head>

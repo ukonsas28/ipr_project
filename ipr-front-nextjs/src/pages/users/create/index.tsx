@@ -13,23 +13,24 @@ const UsersPage = ({ data }: any) => {
   return <UsersPageComponent data={data} />;
 };
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  async (context) => {
-    const { authToken } = cookies(context);
-    try {
-      const { data } = await axios.get(
-        `http://172.17.0.1:8888/user/users-list`,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
-      return { props: { data } };
-    } catch (e) {
-      return { props: { data: 'NO_AUTH' } };
-    }
-  }
-);
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(() => {
+    return async (context) => {
+      const { authToken } = cookies(context);
+      try {
+        const { data } = await axios.get(
+          `http://172.17.0.1:8888/user/users-list`,
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          }
+        );
+        return { props: { data } };
+      } catch (e) {
+        return { props: { data: 'NO_AUTH' } };
+      }
+    };
+  });
 
 export default UsersPage;
