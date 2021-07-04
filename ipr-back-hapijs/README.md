@@ -1,5 +1,7 @@
 # IPR project
 
-### Stack 
-* Hapi JS
-* TypeScript
+### Stack
+
+- Hapi JS
+- Postgres
+- TypeScript

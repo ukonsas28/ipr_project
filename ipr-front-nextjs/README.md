@@ -1,7 +1,7 @@
 # IPR project
 
-### Stack 
-* Next JS
-* React JS
-* TypeScript
+### Stack
 
+- Next JS
+- Redux
+- TypeScript

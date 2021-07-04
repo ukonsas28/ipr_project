@@ -3,7 +3,7 @@
 ### Stack frontend
 
 - Next JS
-- React JS
+- Redux
 - TypeScript
 
 ### Stack backend
