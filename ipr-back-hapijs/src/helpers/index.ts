@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 
-export enum authStrategy {
+export enum AuthStrategy {
   TOKEN = 'token',
 }
 

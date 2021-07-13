@@ -70,6 +70,7 @@ postgres:
 		--name $(APP_NAME)_${POSTGRES_NAME} \
 		--network $(NETWORK) \
 		-p 5434:5432 \
+		-v $(BACK_APP_PATH)/pg_scripts:/docker-entrypoint-initdb.d \
 		-e POSTGRES_PASSWORD=${DEFAULT_PASSWORD} \
 		-e POSTGRES_USER=${DEFAULT_USER} \
 		-e POSTGRES_DB=${DEFAULT_DB} \
