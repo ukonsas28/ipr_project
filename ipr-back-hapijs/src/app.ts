@@ -3,7 +3,6 @@ import Inert from '@hapi/inert';
 import Vision from '@hapi/vision';
 import AuthBearer from 'hapi-auth-bearer-token';
 import HapiSwagger from 'hapi-swagger';
-import { Connection, createConnection } from 'typeorm';
 import appRoutes from './routes';
 import 'reflect-metadata';
 import AuthControllers from './controllers/Auth';
@@ -12,11 +11,8 @@ import { authStrategy } from './helpers';
 class App {
   private server: Hapi.Server;
 
-  private dbConnection: Connection;
-
   private async initDB() {
-    this.dbConnection = await createConnection();
-    await this.dbConnection.runMigrations();
+    console.log('db start');
   }
 
   private async addPlugins() {
