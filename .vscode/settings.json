@@ -1,6 +1,0 @@
-{
-    "eslint.workingDirectories":  [
-        "./ipr-front-nextjs" ,
-        "./ipr-back-hapijs" ,
-     ]
-}
